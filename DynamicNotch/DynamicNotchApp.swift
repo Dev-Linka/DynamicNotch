@@ -10,7 +10,14 @@ import SwiftUI
 struct DynamicNotchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Settings()
+            
+                .onAppear {
+                    if let window = NSApplication.shared.windows.first{
+                        window.setContentSize(NSSize(width: 620, height: 440))
+                    }
+                    
+                }
         }
     }
 }
