@@ -12,12 +12,12 @@ struct DynamicNotchApp: App {
         WindowGroup {
             Settings()
             
-                .onAppear {
+                /*.onAppear {
                     if let window = NSApplication.shared.windows.first{
                         window.setContentSize(NSSize(width: 620, height: 440))
                     }
                     
-                }
+                }*/
         }
     }
 }
