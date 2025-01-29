@@ -6,10 +6,11 @@
 import SwiftUI
 
 struct Settings: View{
-    @State var tap: Bool = false
-    @State var selected = "Home"
-    @Namespace var animation
+     
     var window = NSScreen.main?.visibleFrame
+    @State var selected: String = "Settings"
+    @Namespace var animation
+    
     
     var body: some View {
         
@@ -17,20 +18,23 @@ struct Settings: View{
             
             HStack{
                 
-                VStack{
+                VStack(spacing: 20){
                     
                     HStack{
-                        Image(systemName: ".globe")
-                        Text("Timestamp")
+                        
+                        Text("Dynamic Notch")
+                        Spacer()
                     }
                     .padding(.top, 25)
-                    .padding(.leading)
                     
                     //Button for navigation
                     
+                        TabButton(image: "gear", title: "Settings", selected: $selected, animation: animation)
+                        
+                        TabButton(image: "globe", title: "About", selected: $selected, animation: animation)
                 }
                 
-            }.frame(width: 220)
+            }.frame(width: 200)
             Spacer()
         }
         .frame(width: window!.width / 3, height: window!.height - 470, alignment: .leading)

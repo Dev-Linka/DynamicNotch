@@ -16,13 +16,19 @@ struct TabButton: View{
     var body: some View{
         
         VStack{
-            Button(action: {}, label: {
+            Button(action: {
+                withAnimation(.spring()){
+                    selected = title
+                }
+            }, label: {
                 HStack{
                     Image(systemName: image)
-                        .foregroundColor(selected == title ? Color.black : black)
+                        .font(.title2)
+                        //.foregroundColor(selected == title ? Color.black : .none)
+                    
                     Text(title)
                         .fontWeight(selected == title ? .semibold : .none)
-                        .foregroundColor(selected == title ? Color.black : .none)
+                        //.foregroundColor(selected == title ? Color.black : .none)
                         .animation(.none)
                     
                     Spacer()
@@ -32,15 +38,15 @@ struct TabButton: View{
                             .fill(Color.clear)
                             .frame(width: 3, height: 18)
                         
-                        if(selected == title){
+                        if selected == title{
                             Capsule()
-                                .fill(Color.black)
+                                .fill(Color.white)
                                 .frame(width: 3, height: 18)
                                 .matchedGeometryEffect(id: "Tab", in: animation)
                         }
                     }
                 }.padding(.horizontal)
-            }).buttonStyle(.plain)
+            }).buttonStyle(PlainButtonStyle())
         }
         
         
