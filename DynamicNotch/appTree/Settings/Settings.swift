@@ -1,54 +1,36 @@
-//
-// Created by S7epz on 28/01/25.
-// Copyright © 2025 ACME.
-// All Rights Reserved.
-
 import SwiftUI
 
-struct Settings: View{
+struct Settings: View {
      
     var window = NSScreen.main?.visibleFrame
     @State var selected: String = "Settings"
     @Namespace var animation
     
-    
     var body: some View {
         
-        VStack{
+        HStack(spacing: 0) {
             
-            HStack{
+            VStack(alignment: .leading, spacing: 20) {
                 
-                VStack(spacing: 20){
-                    
-                    HStack{
-                        
-                        Text("Dynamic Notch")
-                        Spacer()
-                    }
+                Text("Dynamic Notch")
+                    .font(.title2)
+                    .bold()
                     .padding(.top, 25)
-                    
-                    //Button for navigation
-                    
-                        TabButton(image: "gear", title: "Settings", selected: $selected, animation: animation)
-                        
-                        TabButton(image: "globe", title: "About", selected: $selected, animation: animation)
-                }
                 
-            }.frame(width: 200)
-            Spacer()
+                TabButton(image: "gear", title: "Settings", selected: $selected, animation: animation)
+                TabButton(image: "globe", title: "About", selected: $selected, animation: animation)
+                
+                Spacer()
+            }
+            .frame(width: 200)
+            .padding(.leading, 10)
+            
+            
+            Rectangle()
+                .fill(Color.black.opacity(0.2))
+                .frame(width: window!.width / 3, height: window!.height - 470)
         }
-        .frame(width: window!.width / 3, height: window!.height - 470, alignment: .leading)
-        
-        /*VStack{
-         GeometryReader{ geometry in
-         Rectangle()
-         .frame(width: geometry.size.width * 1, height: geometry.size.height * 1, alignment: .trailing)
-         .foregroundColor(Color.black.opacity(0.1))
-         .cornerRadius(20)
-         .scaledToFit()
-         
-         }
-         }.edgesIgnoringSafeArea(.all)*/
+        .frame(width: (window!.width / 3) + 200, height: window!.height - 470, alignment: .leading)
     }
 }
 

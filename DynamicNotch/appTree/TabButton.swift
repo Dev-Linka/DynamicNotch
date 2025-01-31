@@ -30,6 +30,7 @@ struct TabButton: View{
                         .fontWeight(selected == title ? .semibold : .none)
                         //.foregroundColor(selected == title ? Color.black : .none)
                         .animation(.none)
+                        
                     
                     Spacer()
                     
@@ -43,10 +44,12 @@ struct TabButton: View{
                                 .fill(Color.white)
                                 .frame(width: 3, height: 18)
                                 .matchedGeometryEffect(id: "Tab", in: animation)
+                                
                         }
                     }
                 }.padding(.horizontal)
-            }).buttonStyle(PlainButtonStyle())
+            })
+            .buttonStyle(PlainButtonStyle())
         }
         
         
