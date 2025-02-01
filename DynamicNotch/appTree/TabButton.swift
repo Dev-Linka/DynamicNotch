@@ -7,9 +7,10 @@
 import SwiftUI
 
 struct TabButton: View{
+    /* var for the Tab button */
     var image: String
     var title: String
-    @Binding var selected: String
+    @Binding var selected: String // Binding let it modify and identify
     
     var animation: Namespace.ID
     
@@ -17,10 +18,12 @@ struct TabButton: View{
         
         VStack{
             Button(action: {
+                /* effect of the animation */
                 withAnimation(.spring()){
                     selected = title
                 }
             }, label: {
+                /* Button */
                 HStack{
                     Image(systemName: image)
                         .font(.title2)
@@ -34,17 +37,17 @@ struct TabButton: View{
                     
                     Spacer()
                     
-                    ZStack{
-                        Capsule()
-                            .fill(Color.clear)
-                            .frame(width: 3, height: 18)
+                    /* Capsule on the right */
+                ZStack{
+                    Capsule()
+                        .fill(Color.clear)
+                        .frame(width: 3, height: 18)
                         
-                        if selected == title{
-                            Capsule()
-                                .fill(Color.white)
-                                .frame(width: 3, height: 18)
-                                .matchedGeometryEffect(id: "Tab", in: animation)
-                                
+                    if selected == title{
+                        Capsule()
+                            .fill(Color.white)
+                            .frame(width: 3, height: 18)
+                            .matchedGeometryEffect(id: "Tab", in: animation)
                         }
                     }
                 }.padding(.horizontal)

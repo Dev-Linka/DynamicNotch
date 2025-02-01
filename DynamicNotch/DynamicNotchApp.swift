@@ -8,16 +8,22 @@ import SwiftUI
 
 @main
 struct DynamicNotchApp: App {
+    @State private var dynamicIslandWindow: DynamicIslandPanel?
+
     var body: some Scene {
         WindowGroup {
             Settings()
-            
-                /*.onAppear {
-                    if let window = NSApplication.shared.windows.first{
-                        window.setContentSize(NSSize(width: 620, height: 440))
-                    }
-                    
-                }*/
+                .onAppear {
+                    showDynamicIsland()
+                }
         }
     }
+
+    func showDynamicIsland() {
+        let island = DynamicIslandPanel()
+        island.contentView = NSHostingView(rootView: DynamicIslandView())
+        island.orderFront(nil)
+        dynamicIslandWindow = island
+    }
 }
+
