@@ -8,6 +8,7 @@ struct Settings: View {
     var window = NSScreen.main?.visibleFrame // For window size
     @State var selected: String = "Settings" // First capsule position
     @Namespace var animation // For animation ID
+    @Binding var transparent: Bool
     
     var body: some View {
         
@@ -25,7 +26,7 @@ struct Settings: View {
                 TabButton(image: "gear", title: "Settings", selected: $selected, animation: animation)
                 TabButton(image: "globe", title: "About", selected: $selected, animation: animation)
                 Button("Open New Window") {
-                    windowController = WindowController(view: DynamicIslandView())
+                    windowController = WindowController(view: DynamicIslandView(transparent: $transparent))
                             }
                             .padding()
                 
@@ -44,8 +45,16 @@ struct Settings: View {
                 if selected == "About"{
                     Text("About section")
                 }else if selected == "Settings"{
-                    Text("Settings section")
+                    Button("Transparent On / Off"){
+                        transparent.toggle()
+                    }
+                    .padding(.bottom, 50)
+                    Text("Variable")
+                        .padding(.trailing, 100)
+                    Text(String(transparent))
                 }
+                
+                
                 
             }
             
@@ -55,22 +64,5 @@ struct Settings: View {
 }
 
 #Preview {
-    Settings()
-}
-
-
-func getNotchPosition() -> NSRect? {
-    guard let screen = NSScreen.main else { return nil }
-    let screenFrame = screen.frame
-    let visibleFrame = screen.visibleFrame
-    
-    let notchHeight = screenFrame.height - visibleFrame.height
-    
-    if notchHeight > 0 {
-        let notchY = screenFrame.height - notchHeight / 2
-        let notchX = screenFrame.width / 2 - 50  // Adjust for notch width
-        return NSRect(x: notchX, y: notchY, width: 100, height: 40)
-    }
-    
-    return nil
+    Settings(transparent: .constant(false))
 }

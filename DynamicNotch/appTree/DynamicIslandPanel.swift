@@ -8,16 +8,16 @@
 import Cocoa
 import SwiftUI
 
-class DynamicIslandPanel: NSPanel {
-    init() {
-        let screen = NSScreen.main!
-        let screenFrame = screen.frame
-        let visibleFrame = screen.visibleFrame
+class DynamicIslandPanel: NSPanel { // NSPanel for non-primary content
+    init() { // Init for setup
+        let screen = NSScreen.main! // ! for assuming the screen is always available
+        let screenFrame = screen.frame // taking full frame
+        let visibleFrame = screen.visibleFrame // taking visible frame
 
         // Calculate notch position
-        let notchHeight = screenFrame.height - visibleFrame.height
-        let notchY = screenFrame.height - notchHeight / 2
-        let notchX = screenFrame.width / 2 - 50
+        let menuBarHeight = screenFrame.height - visibleFrame.maxY
+        let notchY = screenFrame.height - menuBarHeight - 10
+        let notchX = (screenFrame.width / 2)
 
         let panelRect = NSRect(x: notchX, y: notchY, width: 120, height: 50)
 
@@ -28,7 +28,7 @@ class DynamicIslandPanel: NSPanel {
             defer: false
         )
 
-        self.isOpaque = false
+        self.isOpaque = true
         self.backgroundColor = .clear
         self.isMovable = false
         self.hasShadow = false

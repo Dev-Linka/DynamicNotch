@@ -5,10 +5,10 @@
 
 
 
-import Cocoa
+import Cocoa // Framework for API's, windows... traditional AppKit
 import SwiftUI
 
-class WindowController: NSWindowController {
+class WindowController: NSWindowController { // NSWindowController for windows control
     convenience init<Content: View>(view: Content) {
         let hostingView = NSHostingView(rootView: view)
         let window = NSWindow(

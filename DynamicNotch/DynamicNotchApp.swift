@@ -9,10 +9,11 @@ import SwiftUI
 @main
 struct DynamicNotchApp: App {
     @State private var dynamicIslandWindow: DynamicIslandPanel?
-
+    @State private var transparent: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            Settings()
+            Settings(transparent: $transparent)
                 .onAppear {
                     showDynamicIsland()
                 }
@@ -20,8 +21,8 @@ struct DynamicNotchApp: App {
     }
 
     func showDynamicIsland() {
-        let island = DynamicIslandPanel()
-        island.contentView = NSHostingView(rootView: DynamicIslandView())
+        let island = DynamicIslandPanel() // put the panel into a var
+        island.contentView = NSHostingView(rootView: DynamicIslandView(transparent: $transparent))
         island.orderFront(nil)
         dynamicIslandWindow = island
     }
