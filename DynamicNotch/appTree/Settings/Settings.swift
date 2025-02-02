@@ -63,6 +63,6 @@ struct Settings: View {
     }
 }
 
-#Preview {
+/*#Preview {
     Settings(transparent: .constant(false))
-}
+}*/
