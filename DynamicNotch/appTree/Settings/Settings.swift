@@ -45,13 +45,17 @@ struct Settings: View {
                 if selected == "About"{
                     Text("About section")
                 }else if selected == "Settings"{
-                    Button("Transparent On / Off"){
-                        transparent.toggle()
+                    VStack{
+                        HStack {
+                            Text("Trasparent")
+                                .frame(alignment: .leading)
+                            CheckBoxView(checked: $transparent)
+                        }
+                        .frame(alignment: .topLeading)
+                        Spacer()
                     }
-                    .padding(.bottom, 50)
-                    Text("Variable")
-                        .padding(.trailing, 100)
-                    Text(String(transparent))
+                    .frame(width: 500, alignment: .leading)
+                    .padding(.top, 25)
                 }
                 
                 
@@ -63,6 +67,6 @@ struct Settings: View {
     }
 }
 
-/*#Preview {
+#Preview {
     Settings(transparent: .constant(false))
-}*/
+}

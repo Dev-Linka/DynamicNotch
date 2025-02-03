@@ -9,7 +9,7 @@ import SwiftUI
 @main
 struct DynamicNotchApp: App {
     @State private var dynamicIslandWindow: DynamicIslandPanel?
-    @State private var transparent: Bool = true
+    @State private var transparent: Bool = false
     
     var body: some Scene {
         WindowGroup {

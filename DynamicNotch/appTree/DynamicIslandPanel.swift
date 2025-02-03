@@ -16,7 +16,7 @@ class DynamicIslandPanel: NSPanel { // NSPanel for non-primary content
 
         // Calculate notch position
         let menuBarHeight = screenFrame.height - visibleFrame.maxY
-        let notchY = screenFrame.height - menuBarHeight - 10
+        let notchY = screenFrame.height - menuBarHeight
         let notchX = (visibleFrame.width / 2) - 150
 
         let panelRect = NSRect(x: notchX, y: notchY, width: 300, height: 60)
@@ -32,8 +32,9 @@ class DynamicIslandPanel: NSPanel { // NSPanel for non-primary content
         self.backgroundColor = .clear
         self.isMovable = false
         self.hasShadow = false
-        self.level = .floating // above other windows
+        self.level = .statusBar
         self.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        
         
     }
 }
