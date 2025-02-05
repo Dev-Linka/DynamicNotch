@@ -8,37 +8,35 @@
 import SwiftUI
 
 struct DynamicIslandView: View {
-    @State private var isExpanded = false
+    @State private var isExpanded = true
     @Binding var transparent: Bool
     @State private var isTapped: Bool = false
 
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(isExpanded ? (transparent ? Color.black.opacity(0.5) : Color.cyan) : Color.clear)
-                .frame(width: isExpanded ? 270 : 150, height: 54)
-                .clipShape(
+            RoundedRectangle(cornerRadius: 20)
+                .fill((isExpanded ? (transparent ? Color.black.opacity(0.5) : Color.cyan) : Color.clear))
+                .frame(
+                    width: isTapped ? 350 : (isExpanded ? 270 : 150),
+                    height: isTapped ? 110 : (isExpanded ? 74 : 54)
+                )
+                .animation(.spring(response: 0.5, dampingFraction: 0.8), value: isExpanded)
+                /*.clipShape(
                     .rect(
                         bottomLeadingRadius: 15,
                         bottomTrailingRadius: 15
                     )
-                )
-                .animation(.spring(response: 0.5, dampingFraction: 0.8), value: isExpanded)
-
-            
+                )*/
+                
         }
         .onTapGesture {
-                   isTapped = true
-               }
+            isTapped = true
+        }
         .onHover { hovering in
-            isExpanded = hovering
-            if isTapped{
-                isTapped = hovering
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                isExpanded = hovering
             }
-            
         }
         .frame(width: 300)
     }
 }
-
-

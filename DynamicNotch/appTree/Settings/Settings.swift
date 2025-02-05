@@ -25,10 +25,10 @@ struct Settings: View {
                 
                 TabButton(image: "gear", title: "Settings", selected: $selected, animation: animation)
                 TabButton(image: "globe", title: "About", selected: $selected, animation: animation)
-                Button("Open New Window") {
+                /*Button("Open New Window") {
                     windowController = WindowController(view: DynamicIslandView(transparent: $transparent))
                             }
-                            .padding()
+                            .padding()*/
                 
                 Spacer()
             }
@@ -46,16 +46,24 @@ struct Settings: View {
                     Text("About section")
                 }else if selected == "Settings"{
                     VStack{
-                        HStack {
+                        HStack(spacing: 50) {
                             Text("Trasparent")
-                                .frame(alignment: .leading)
+                            
                             CheckBoxView(checked: $transparent)
                         }
-                        .frame(alignment: .topLeading)
+                        .padding(.bottom)
+                        HStack(spacing: 60){
+                            Text("On hover")
+                            
+                            CheckBoxView(checked: $transparent)
+                                
+                        }
+                        
                         Spacer()
                     }
                     .frame(width: 500, alignment: .leading)
                     .padding(.top, 25)
+                    
                 }
                 
                 
